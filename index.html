@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¤u·~³]³Æ 1:1 AR ¤z¯AÀËÅç¨t²Î</title>
+    <title>å·¥æ¥­è¨­å‚™ 1:1 AR å¹²æ¶‰æª¢é©—ç³»çµ±</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #1a1a1a; }
-        /* Åı 3D ¹wÄıµe­±¶ñº¡¤â¾÷¿Ã¹õ */
+        /* è®“ 3D é è¦½ç•«é¢å¡«æ»¿æ‰‹æ©Ÿè¢å¹• */
         model-viewer { width: 100%; height: 100%; }
-        /* ¦Û­qº}«Gªº AR ±Ò°Ê«ö¶s */
+        /* è‡ªè¨‚æ¼‚äº®çš„ AR å•Ÿå‹•æŒ‰éˆ• */
         #ar-button {
             position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
             background-color: #007bff; color: white; border: none; border-radius: 30px;
@@ -19,11 +19,11 @@
 </head>
 <body>
 
-    <!-- ¸ü¤J Google ©x¤è Model Viewer ®Ö¤ß¤¸¥ó -->
+    <!-- è¼‰å…¥ Google å®˜æ–¹ Model Viewer æ ¸å¿ƒå…ƒä»¶ -->
     <script type="module" src="https://googleapis.com"></script>
 
-    <!-- 3D »P AR ®Ö¤ß¼ĞÅÒ -->
-    <!-- ½Ğ±N src ¤¤ªº "my_equipment.glb" §ï¬°±zªº¼Ò«¬ÀÉ¦W -->
+    <!-- 3D èˆ‡ AR æ ¸å¿ƒæ¨™ç±¤ -->
+    <!-- è«‹å°‡ src ä¸­çš„ "my_equipment.glb" æ”¹ç‚ºæ‚¨çš„æ¨¡å‹æª”å -->
     <model-viewer 
         src="my_equipment.glb" 
         ar 
@@ -34,11 +34,11 @@
         touch-action="pan-y"
         shadow-intensity="1" 
         exposure="1"
-        alt="¤u·~³]³Æ AR ¼Ò«¬">
+        alt="å·¥æ¥­è¨­å‚™ AR æ¨¡å‹">
         
-        <!-- ·í¦b¤ä´© AR ªº¦æ°Ê¸Ë¸m¶}±Ò®É¡A·|Åã¥Ü¦¹«ö¶s -->
+        <!-- ç•¶åœ¨æ”¯æ´ AR çš„è¡Œå‹•è£ç½®é–‹å•Ÿæ™‚ï¼Œæœƒé¡¯ç¤ºæ­¤æŒ‰éˆ• -->
         <button slot="ar-button" id="ar-button">
-            ?? ¶}±Ò²{³õ AR 1:1 ¤z¯AÀË¬d
+            é–‹å•Ÿç¾å ´ AR 1:1 å¹²æ¶‰æª¢æŸ¥
         </button>
     </model-viewer>
 
