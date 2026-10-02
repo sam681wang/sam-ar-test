@@ -6,9 +6,8 @@
     <title>工業設備 1:1 AR 多機型檢驗系統</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #1a1a1a; font-family: sans-serif; }
-        model-viewer { width: 100%; height: 100%; }
+        model-viewer { width: 100%; height: 100%; background-color: #1a1a1a !important; }
         
-        /* AR 啟動按鈕 */
         #ar-button {
             position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
             background-color: #007bff; color: white; border: none; border-radius: 30px;
@@ -16,41 +15,36 @@
             cursor: pointer; z-index: 999;
         }
 
-        /* 頂部模型切換選單選區 */
         .menu-container {
             position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
             display: flex; gap: 10px; background: rgba(0, 0, 0, 0.6); padding: 10px;
             border-radius: 8px; z-index: 1000; max-width: 90%; overflow-x: auto;
         }
 
-        /* 選單按鈕樣式 */
         .menu-btn {
             background: #444; color: white; border: none; padding: 8px 16px;
             border-radius: 4px; cursor: pointer; font-size: 14px; white-space: nowrap;
             transition: background 0.3s;
         }
 
-        /* 當前選中按鈕的樣式 */
+        /* 只有帶有 active 樣式的按鈕才會變綠色 */
         .menu-btn.active { background: #28a745; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <!-- 載入 Google 官方核心元件 -->
-    <!-- 💡 請將原來的 unpkg 那行，完整替換成下面這行 jsDelivr 網址（一字不可漏） -->
-    <script type="module" src="https://jsdelivr.net"></script>
+    <!-- 1. 使用官方最標準、完全沒有 CORS 限制的載入點 -->
+    <script type="module" src="https://googleapis.com"></script>
 
-
-    <!-- 頂部切換選單 -->
+    <!-- 2. 頂部切換選單：請務必檢查此處的 data-model 檔名與您 GitHub 上的完全一模一樣 -->
     <div class="menu-container">
-        <!-- data-model 填入您在 GitHub 上實際的模型檔名，按鈕文字可自訂 -->
-        <button class="menu-btn active" data-model="./my_equipment.glb">方塊 </button>
-        <button class="menu-btn active" data-model="./machine_A.glb">設備 A (標準型)</button>
+        <button class="menu-btn active" data-model="./my_equipment.glb">方塊</button>
+        <button class="menu-btn" data-model="./machine_A.glb">設備 A (標準型)</button>
         <button class="menu-btn" data-model="./machine_B.glb">設備 B (加大型)</button>
         <button class="menu-btn" data-model="./machine_C.glb">設備 C (控制箱)</button>
     </div>
 
-    <!-- 3D 渲染標籤（預設載入第一個模型） -->
+    <!-- 3. 3D 渲染標籤（最純粹的初始設定） -->
     <model-viewer 
         id="equipment-viewer"
         src="./my_equipment.glb" 
@@ -69,22 +63,24 @@
         </button>
     </model-viewer>
 
-    <!-- 自動切換模型的 JavaScript 程式碼 -->
+    <!-- 4. 純粹、精準的 JavaScript 控制腳本 -->
     <script>
         const viewer = document.querySelector('#equipment-viewer');
         const buttons = document.querySelectorAll('.menu-btn');
 
         buttons.forEach(button => {
             button.addEventListener('click', (event) => {
-                // 1. 移除所有人目前綠色高亮的 active 樣式
+                // 點擊任何按鈕時，先把全體按鈕的綠色高亮 (active) 徹底剝奪
                 buttons.forEach(btn => btn.classList.remove('active'));
                 
-                // 2. 幫當前點擊的按鈕加上綠色高亮
-                event.target.classList.add('active');
+                // 只幫當前被點擊的那個按鈕加上綠色高亮
+                button.classList.add('active');
                 
-                // 3. 讀取按鈕上的 data-model 路徑，並塞給 3D 元件切換模型
-                const modelPath = event.target.getAttribute('data-model');
-                viewer.src = modelPath;
+                // 讀取該按鈕對應的模型路徑，並直接塞給 3D 檢視器
+                const targetModel = button.getAttribute('data-model');
+                
+                console.log("正在切換模型至:", targetModel);
+                viewer.setAttribute('src', targetModel);
             });
         });
     </script>
