@@ -6,9 +6,7 @@
     <title>工業設備 1:1 AR 干涉檢驗系統</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #1a1a1a; }
-        /* 讓 3D 預覽畫面填滿手機螢幕 */
         model-viewer { width: 100%; height: 100%; }
-        /* 自訂漂亮的 AR 啟動按鈕 */
         #ar-button {
             position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
             background-color: #007bff; color: white; border: none; border-radius: 30px;
@@ -19,13 +17,13 @@
 </head>
 <body>
 
-    <!-- 載入 Google 官方 Model Viewer 核心元件 -->
-    <script type="module" src="https://unpkg.com"></script>
+    <!-- 這是正確的 Google 官方核心載入點 -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-    <!-- 3D 與 AR 核心標籤 -->
-    <!-- 請將 src 中的 "my_equipment.glb" 改為您的模型檔名 -->
+    <!-- 3D 渲染標籤 -->
+    <!-- 這裡假設您的方塊模型在 GitHub 最外層的名稱叫作 Cube.glb -->
     <model-viewer 
-        src="./my_equipment.glb" 
+        src="./Cube.glb" 
         ar 
         ar-modes="scene-viewer" 
         ar-scale="fixed"
@@ -33,14 +31,17 @@
         camera-controls 
         touch-action="pan-y"
         shadow-intensity="1" 
-        exposure="1"
+        exposure="1.5"
         alt="工業設備 AR 模型">
         
-        <!-- 當在支援 AR 的行動裝置開啟時，會顯示此按鈕 -->
         <button slot="ar-button" id="ar-button">
-            開啟現場 AR 1:1 干涉檢查
+            🔍 開啟現場 AR 1:1 干涉檢查
         </button>
     </model-viewer>
+
+</body>
+</html>
+
 
 </body>
 </html>
